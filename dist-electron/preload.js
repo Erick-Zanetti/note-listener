@@ -20,3 +20,7 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
     // You can expose other APTs you need here.
     // ...
 });
+// Expose Notion API
+contextBridge.exposeInMainWorld('notionAPI', {
+    createPage: (params) => ipcRenderer.invoke('notion:createPage', params)
+});
