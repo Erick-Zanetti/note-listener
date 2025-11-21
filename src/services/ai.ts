@@ -33,7 +33,8 @@ RULES:
 3. The "tags" must be relevant keywords, lowercase, 2 to 5 tags.
 4. Return ONLY valid JSON, no additional text before or after.
 5. Use UTF-8 for special characters.
-6. The output content MUST be in ${language}.`;
+6. Use plenty of emojis to make the summary more visual and interesting.
+7. The output content MUST be in ${language}.`;
 
 export async function processNote({ text, provider, apiKey, systemPrompt, outputLanguage = 'English' }: ProcessNoteParams): Promise<AIResponse> {
   if (!apiKey) {
