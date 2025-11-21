@@ -90,6 +90,11 @@ Once the app is running:
     - Paste your **Database ID** (found in the Notion URL of your database).
 6.  Click **Save Settings**.
 
+<img width="365" height="657" alt="image" src="https://github.com/user-attachments/assets/6a40c2d0-a968-476c-b5c8-9e616fc91764" />
+<img width="374" height="657" alt="image" src="https://github.com/user-attachments/assets/135fa8c6-5f6f-4372-b59e-71cbf1bc2273" />
+<img width="361" height="652" alt="image" src="https://github.com/user-attachments/assets/e36e4f13-e5e0-4cad-995f-805f097a3ba4" />
+<img width="365" height="652" alt="image" src="https://github.com/user-attachments/assets/82f3a282-3bd6-41d4-b227-fbfb3ecf6799" />
+
 ---
 
 ## 🛠️ Tech Stack
