@@ -24,7 +24,7 @@ Note Listener is a modern desktop application built with **Electron** and **Reac
   - Auto-detects input language when using Whisper.
 - **📝 Seamless Notion Integration**:
   - Sends processed notes directly to a specified Notion Database.
-  - Maps fields automatically: `Name`, `Category`, `Tags`, `Date`, `Hour`, `Transcript`, and `Content`.
+  - Maps fields automatically: `Hour`, `Name`, `Category` and `Tags`.
 - **🎨 Premium UI/UX**:
   - Glassmorphic design with ambient lighting effects.
   - Dark mode optimized.
@@ -41,13 +41,10 @@ Note Listener is a modern desktop application built with **Electron** and **Reac
     - Create an internal integration at [Notion Developers](https://www.notion.so/my-integrations).
     - Get your **Internal Integration Token**.
     - Create a Database in Notion with the following properties:
+        - `Hour` (Datetime)
         - `Name` (Title)
         - `Category` (Select)
         - `Tags` (Multi-select)
-        - `Date` (Date)
-        - `Hour` (Rich Text or Text)
-        - `Transcript` (Rich Text or Text)
-        - `Content` (Rich Text or Text - *for the AI summary*)
     - **Important**: Share your database with your integration (Click `...` on the database page > `Connect to` > Select your integration).
 3.  **AI API Keys**:
     - At least one API key from: [OpenAI](https://platform.openai.com/), [Anthropic](https://console.anthropic.com/), or [Google AI Studio](https://aistudio.google.com/).
