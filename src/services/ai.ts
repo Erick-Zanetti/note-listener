@@ -13,6 +13,7 @@ interface ProcessNoteParams {
 }
 
 interface AIResponse {
+  title: string;
   content: string;
   category: string;
   tags: string[];
@@ -22,19 +23,21 @@ const getStructuredPromptSuffix = (language: string = 'English') => `
 
 IMPORTANT: You MUST return your response EXACTLY in the following JSON format:
 {
+  "title": "a concise title in ${language} (maximum 50 characters)",
   "content": "your detailed summary/analysis here (can be multi-line) in ${language}",
   "category": "ONE main category in ${language} (choose from: Work, Personal, Idea, Task, Meeting, Study, Project, Note, Reminder, Other)",
   "tags": ["tag1", "tag2", "tag3"]
 }
 
 RULES:
-1. The "content" must be a structured and useful summary of the text, NOT just a repetition.
-2. The "category" must be ONE WORD only, Capitalized.
-3. The "tags" must be relevant keywords, lowercase, 2 to 5 tags.
-4. Return ONLY valid JSON, no additional text before or after.
-5. Use UTF-8 for special characters.
-6. Use plenty of emojis to make the summary more visual and interesting.
-7. The output content MUST be in ${language}.`;
+1. The "title" must be a concise and descriptive title summarizing the main topic, maximum 50 characters, in ${language}.
+2. The "content" must be a structured and useful summary of the text, NOT just a repetition.
+3. The "category" must be ONE WORD only, Capitalized.
+4. The "tags" must be relevant keywords, lowercase, 2 to 5 tags.
+5. Return ONLY valid JSON, no additional text before or after.
+6. Use UTF-8 for special characters.
+7. Use plenty of emojis to make the summary more visual and interesting.
+8. The output content MUST be in ${language}.`;
 
 export async function processNote({ text, provider, apiKey, systemPrompt, outputLanguage = 'English' }: ProcessNoteParams): Promise<AIResponse> {
   if (!apiKey) {
@@ -76,15 +79,16 @@ export async function processNote({ text, provider, apiKey, systemPrompt, output
         const parsed = JSON.parse(jsonMatch[0]);
         console.log('✅ Parsed JSON:', parsed);
         return {
+          title: parsed.title || 'New Mental Note',
           content: parsed.content || responseText,
           category: parsed.category || 'Geral',
           tags: Array.isArray(parsed.tags) ? parsed.tags : [],
         };
       }
       
-      // If no JSON found, return as-is with defaults
       console.warn('⚠️ No JSON found in AI response, using defaults');
       return {
+        title: 'New Mental Note',
         content: responseText,
         category: 'Geral',
         tags: [],
@@ -92,6 +96,7 @@ export async function processNote({ text, provider, apiKey, systemPrompt, output
     } catch (parseError) {
       console.warn('❌ Failed to parse AI response as JSON, using raw text:', parseError);
       return {
+        title: 'New Mental Note',
         content: responseText,
         category: 'Geral',
         tags: [],

@@ -10,6 +10,7 @@ export default function Home() {
   const [isRecording, setIsRecording] = useState(false);
   const [transcript, setTranscript] = useState('');
   const [processedResult, setProcessedResult] = useState('');
+  const [aiTitle, setAiTitle] = useState('');
   const [aiCategory, setAiCategory] = useState('');
   const [aiTags, setAiTags] = useState<string[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
@@ -129,6 +130,7 @@ export default function Home() {
         
         setTranscript('');
         setProcessedResult('');
+        setAiTitle('');
 
         if (speechMethod === 'browser') {
           // Use Web Speech API
@@ -206,6 +208,7 @@ export default function Home() {
       });
       
       setProcessedResult(result.content);
+      setAiTitle(result.title);
       setAiCategory(result.category);
       setAiTags(result.tags);
       setStatus('Processing complete.');
@@ -229,8 +232,7 @@ export default function Home() {
     setStatus('Saving to Notion...');
 
     try {
-      // Generate a title from the first few words or a summary
-      const title = processedResult.split('\n')[0].substring(0, 50) || 'New Mental Note';
+      const title = aiTitle || 'New Mental Note';
       
       await saveToNotion({
         title,
@@ -247,6 +249,7 @@ export default function Home() {
         setStatus('');
         setTranscript('');
         setProcessedResult('');
+        setAiTitle('');
         setAiCategory('');
         setAiTags([]);
         window.scrollTo({ top: 0, behavior: 'smooth' });
