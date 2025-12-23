@@ -7,28 +7,28 @@
 ![React](https://img.shields.io/badge/React-v18+-blue)
 ![TypeScript](https://img.shields.io/badge/TypeScript-v5+-blue)
 
-Note Listener is a modern desktop application built with **Electron** and **React** that helps you capture thoughts, ideas, and tasks using your voice. It uses advanced AI models (OpenAI, Anthropic, or Gemini) to transcribe, summarize, categorize, and tag your audio notes before automatically saving them to your **Notion** database.
+**Note Listener** is a modern, high-performance desktop application built with **Electron** and **React** designed to capture thoughts, ideas, and tasks using your voice. It leverages advanced AI models (all configurable) to transcribe, summarize, categorize, and tag your audio notes before automatically syncing them to your **Notion** database.
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-- **🎙️ Flexible Recording**: 
-  - **Web Speech API**: Free, real-time transcription (requires internet).
-  - **OpenAI Whisper**: High-fidelity transcription for complex audio (requires API key).
-- **🧠 AI-Powered Processing**:
-  - Supports **OpenAI (GPT-4o/Mini)**, **Anthropic (Claude 3.5)**, and **Google (Gemini 1.5)**.
-  - Automatically extracts a **Title**, **Category**, **Tags**, and a structured **Summary**.
+- **🎙️ Versatile Recording Options**: 
+  - **Web Speech API**: Unlimited, real-time transcription (requires internet).
+  - **OpenAI Whisper**: Studio-quality transcription for handling complex audio (requires API key).
+- **🧠 Intelligent AI Processing**:
+  - Seamlessly integrates with **OpenAI (GPT-4o/Mini)**, **Anthropic (Claude 3.5)**, and **Google (Gemini 1.5)**.
+  - Automatically generates a **Title**, **Category**, **Tags**, and a structured **Summary** from your raw audio.
 - **🌍 Multi-Language Support**:
   - Configure the AI to output summaries in English, Portuguese, Spanish, French, German, and more.
-  - Auto-detects input language when using Whisper.
-- **📝 Seamless Notion Integration**:
-  - Sends processed notes directly to a specified Notion Database.
-  - Maps fields automatically: `Hour`, `Name`, `Category` and `Tags`.
-- **🎨 Premium UI/UX**:
-  - Glassmorphic design with ambient lighting effects.
-  - Dark mode optimized.
-  - Responsive and intuitive interface.
+  - Supports automatic language detection for input.
+- **📝 Automatic Notion Sync**:
+  - Sends processed notes directly to your Notion Database.
+  - Auto-maps properties: `Hour`, `Name`, `Category`, and `Tags`.
+- **🎨 Premium User Experience**:
+  - Beautiful glassmorphic design with ambient animations.
+  - Fully optimized Dark Mode.
+  - Responsive, intuitive, and distraction-free interface.
 
 ---
 
@@ -36,71 +36,100 @@ Note Listener is a modern desktop application built with **Electron** and **Reac
 
 ### Prerequisites
 
-1.  **Node.js** (v18 or higher) installed.
+Before running the application, ensure you have the following:
+
+1.  **Node.js**: Version 18 or higher is required. [Download Node.js](https://nodejs.org/)
 2.  **Notion Integration**:
-    - Create an internal integration at [Notion Developers](https://www.notion.so/my-integrations).
-    - Get your **Internal Integration Token**.
-    - Create a Database in Notion with the following properties:
-        - `Hour` (Datetime)
+    - Go to [Notion Developers](https://www.notion.so/my-integrations) and create a new internal integration.
+    - Copy your **Internal Integration Token**.
+    - Create a Database in Notion with these properties:
+        - `Hour` (Date)
         - `Name` (Title)
         - `Category` (Select)
         - `Tags` (Multi-select)
-    - **Important**: Share your database with your integration (Click `...` on the database page > `Connect to` > Select your integration).
+    - **Crucial Step**: Click the `...` menu on your Notion Database page, select `Connect to`, and choose your new integration.
 3.  **AI API Keys**:
-    - At least one API key from: [OpenAI](https://platform.openai.com/), [Anthropic](https://console.anthropic.com/), or [Google AI Studio](https://aistudio.google.com/).
+    - Get an API key from at least one provider:
+        - [OpenAI API Keys](https://platform.openai.com/api-keys)
+        - [Anthropic Console](https://console.anthropic.com/)
+        - [Google AI Studio](https://aistudio.google.com/)
 
 ### Installation
 
-1.  Clone the repository:
+1.  **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/note-listener.git
+    git clone https://github.com/Erick-Zanetti/note-listener.git
     cd note-listener
     ```
 
-2.  Install dependencies:
+2.  **Install dependencies**:
     ```bash
     npm install
+    # or
+    yarn install
     ```
 
-3.  Run the development server:
+3.  **Run the development server**:
     ```bash
     npm run electron:dev
     ```
 
+4.  **Build for Production** (Optional):
+    To create an executable file (exe/dmg/AppImage):
+    ```bash
+    npm run electron:build
+    ```
+    The output will be in the `release` or `dist` folder.
+
 ---
 
-## ⚙️ Configuration
+## ⚙️ Configuration Guide
 
-Once the app is running:
+Upon first launch, you will need to configure the application:
 
 1.  Click the **Settings** (gear icon) in the top right corner.
 2.  **AI Configuration**:
-    - Select your preferred **Default Provider**.
-    - Choose your **AI Output Language** (e.g., English, Portuguese).
-    - (Optional) Customize the **System Prompt** to change how the AI summarizes your notes.
-3.  **Transcription**:
-    - Choose between **Browser** (Free) or **Whisper** (Paid/Higher Quality).
+    - **Default Provider**: Choose between OpenAI, Anthropic, or Google.
+    - **Output Language**: Select the language you want your notes to be summarized in (e.g., English, Portuguese).
+    - **System Prompt**: (Advanced) Customize how the AI interprets your speech.
+3.  **Transcription Settings**:
+    - **Browser**: Free, uses Chrome/Edge built-in speech recognition. Good for quick notes.
+    - **Whisper**: Paid (via OpenAI), extremely accurate. Best for long, messy streams of consciousness.
 4.  **API Keys**:
-    - Enter the API keys for the providers you intend to use.
-5.  **Notion Integration**:
+    - Input the keys for the services you plan to use. Keys are stored locally on your machine.
+5.  **Notion Setup**:
     - Paste your **Integration Token**.
-    - Paste your **Database ID** (found in the Notion URL of your database).
+    - Paste your **Database ID**. (The 32-character string in your database URL: `notion.so/myworkspace/{DATABASE_ID}?v=...`)
 6.  Click **Save Settings**.
 
-<img width="365" height="657" alt="image" src="https://github.com/user-attachments/assets/6a40c2d0-a968-476c-b5c8-9e616fc91764" />
-<img width="374" height="657" alt="image" src="https://github.com/user-attachments/assets/135fa8c6-5f6f-4372-b59e-71cbf1bc2273" />
-<img width="361" height="652" alt="image" src="https://github.com/user-attachments/assets/e36e4f13-e5e0-4cad-995f-805f097a3ba4" />
-<img width="365" height="652" alt="image" src="https://github.com/user-attachments/assets/82f3a282-3bd6-41d4-b227-fbfb3ecf6799" />
+---
+
+## 📸 Screenshots
+
+<div style="display: flex; gap: 10px; flex-wrap: wrap;">
+  <img src="https://github.com/user-attachments/assets/6a40c2d0-a968-476c-b5c8-9e616fc91764" height="400" alt="Home Screen" />
+  <img src="https://github.com/user-attachments/assets/135fa8c6-5f6f-4372-b59e-71cbf1bc2273" height="400" alt="Recording" />
+  <img src="https://github.com/user-attachments/assets/e36e4f13-e5e0-4cad-995f-805f097a3ba4" height="400" alt="Processing" />
+  <img src="https://github.com/user-attachments/assets/82f3a282-3bd6-41d4-b227-fbfb3ecf6799" height="400" alt="Settings" />
+</div>
 
 ---
 
 ## 🛠️ Tech Stack
 
--   **Core**: [Electron](https://www.electronjs.org/), [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/)
--   **Styling**: [Tailwind CSS](https://tailwindcss.com/), [Lucide React](https://lucide.dev/) (Icons)
--   **Build Tool**: [Vite](https://vitejs.dev/)
--   **AI Integration**: OpenAI SDK, Anthropic SDK, Google Generative AI SDK
--   **Data**: Notion Client API
+-   **Frontend**: [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Tailwind CSS](https://tailwindcss.com/)
+-   **Desktop Runtime**: [Electron](https://www.electronjs.org/)
+-   **Build System**: [Vite](https://vitejs.dev/)
+-   **AI Services**: OpenAI SDK, Anthropic SDK, Google Generative AI SDK
+-   **Database Integration**: Official Notion Client API
+
+---
+
+## ❓ Troubleshooting
+
+-   **"Microphone permission denied"**: check your OS privacy settings and ensure the app is allowed to access the microphone.
+-   **"Notion Error: Could not find database"**: Verify the Database ID and ensure you have **connected** the integration to the specific database page in Notion.
+-   **"AI Error"**: Check your API key balance/credits. Most providers require a paid account or active trial.
 
 ---
 

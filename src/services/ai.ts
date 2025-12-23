@@ -81,7 +81,7 @@ export async function processNote({ text, provider, apiKey, systemPrompt, output
         return {
           title: parsed.title || 'New Mental Note',
           content: parsed.content || responseText,
-          category: parsed.category || 'Geral',
+          category: parsed.category || 'General',
           tags: Array.isArray(parsed.tags) ? parsed.tags : [],
         };
       }
@@ -90,7 +90,7 @@ export async function processNote({ text, provider, apiKey, systemPrompt, output
       return {
         title: 'New Mental Note',
         content: responseText,
-        category: 'Geral',
+        category: 'General',
         tags: [],
       };
     } catch (parseError) {
@@ -98,7 +98,7 @@ export async function processNote({ text, provider, apiKey, systemPrompt, output
       return {
         title: 'New Mental Note',
         content: responseText,
-        category: 'Geral',
+        category: 'General',
         tags: [],
       };
     }

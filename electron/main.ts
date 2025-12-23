@@ -130,7 +130,7 @@ ipcMain.handle('notion:createPage', async (_event, { apiKey, databaseId, title, 
           {
             type: 'text',
             text: {
-              content: '📝 Transcrição Original',
+              content: '📝 Original Transcript',
             },
           },
         ],

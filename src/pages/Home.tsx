@@ -37,27 +37,7 @@ export default function Home() {
       recognitionRef.current = new SpeechRecognition();
       recognitionRef.current.continuous = true;
       recognitionRef.current.interimResults = true;
-      // We keep Portuguese for speech recognition as the user is likely speaking Portuguese
-      // Ideally this should also be configurable, but for now let's assume the input is PT
-      // or maybe we can set it to 'en-US' if the user wants to speak English?
-      // The user didn't specify input language, only output. 
-      // "App in English" might imply they speak English too, but "Note Listener" usually implies speaking notes.
-      // Let's default to 'pt-BR' as before but maybe make it configurable later.
-      // Actually, if the app is in English, maybe the default recognition should be English?
-      // The user said "App... message text... code... must be in English".
-      // But didn't explicitly say they will SPEAK in English.
-      // However, usually if the app is in English, the user might expect English input.
-      // Let's stick to 'pt-BR' for now as the previous context was Portuguese, 
-      // but I'll add a comment or maybe check if I should change it.
-      // Re-reading: "tudo desse app... deve ser em ingles". 
-      // I will change the recognition lang to 'en-US' to be consistent, 
-      // but since the user is likely Brazilian (speaking Portuguese in the prompt), 
-      // this might be risky. 
-      // I'll keep 'pt-BR' for recognition for now as it's safer for a Brazilian user, 
-      // or better yet, I won't touch the lang property if I don't have to, 
-      // but the previous code had 'pt-BR'.
-      // I'll leave it as 'pt-BR' for now to be safe, as the user asked for "Output language" config, not input.
-      recognitionRef.current.lang = 'pt-BR';
+      recognitionRef.current.lang = 'en-US';
 
       recognitionRef.current.onresult = (event: any) => {
         let finalTranscript = '';
