@@ -2,6 +2,8 @@
   "name": "note-listener",
   "private": true,
   "version": "0.0.0",
+  "description": "Turn your mental chaos into structured Notion notes with the power of AI.",
+  "author": "Erick Zanetti",
   "type": "module",
   "main": "dist-electron/main.js",
   "scripts": {
@@ -52,7 +54,7 @@
     "appId": "com.notelistener.app",
     "productName": "Note listener",
     "directories": {
-      "output": "release"
+      "output": "release_build"
     },
     "files": [
       "dist/**/*",
